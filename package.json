@@ -2,6 +2,9 @@
   "name": "page-findcation",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -12,6 +15,7 @@
     "@astrojs/react": "^4.4.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@vercel/analytics": "^2.0.0",
     "astro": "^5.17.1",
     "framer-motion": "^12.35.2",
     "leaflet": "^1.9.4",
@@ -19,5 +23,8 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-leaflet": "^5.0.0"
+  },
+  "overrides": {
+    "serialize-javascript": "^7.0.4"
   }
 }
