@@ -5,7 +5,6 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-    base: '/page-findcation',
     integrations: [react()],
     vite: {
         server: {
