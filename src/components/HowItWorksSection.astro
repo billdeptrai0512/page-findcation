@@ -1,0 +1,171 @@
+---
+// How It Works section
+import HowItWorksDemo from './HowItWorksDemo.astro';
+---
+
+<section class="how-it-works reveal-on-scroll" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Hướng dẫn sử dụng</h2>
+      <div class="step-indicator-wrapper">
+        <span class="step-badge" id="step-badge">Bước 1</span>
+      </div>
+    </div>
+    
+    <div class="how-it-works-content">
+      <!-- Demo Column -->
+      <div class="demo-column">
+        <HowItWorksDemo />
+      </div>
+    </div>
+    <div class="step-indicator-instruction">
+      <p class="section-subtitle" id="step-description">Mở ứng dụng và xác định vị trí hiện tại của bạn trên bản đồ.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how-it-works {
+    padding: 2rem;
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .step-indicator-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 1rem;
+  }
+
+  .step-indicator-instruction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+    min-height: 1rem;
+  }
+
+  .step-badge {
+    display: inline-block;
+    background-color: #fce7f3;
+    color: #E31C5F;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .fade-out {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  .how-it-works-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .demo-column {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
+<script>
+  function setupStepSync() {
+    const descText = document.getElementById('step-description');
+    const badgeText = document.getElementById('step-badge');
+    if (!descText || !badgeText) return;
+
+    // Define which animation frames correspond to which UI steps (0-indexed)
+    // Frame 0-3: Step 1 (Open Map)
+    // Frame 4-7: Step 2 (Tap & View Details)
+    // Frame 8-11: Step 3 (Contact & Enjoy)
+    const stepMapping = {
+      0: 0, 1: 0, 2: 0, 3: 0,
+      4: 1, 5: 1, 6: 1, 7: 1,
+      8: 2, 9: 2, 10: 2, 11: 2
+    };
+
+    const stepData = [
+      { badge: "Bước 1", text: "Mở ứng dụng và xác định vị trí hiện tại của bạn trên bản đồ." },
+      { badge: "Bước 2", text: "Nhấn vào các biểu tượng trên bản đồ để xem nhanh thông tin." },
+      { badge: "Bước 3", text: "Liên hệ đặt phòng trực tiếp với chủ nhà." }
+    ];
+
+    let currentActiveIdx = 0;
+
+    function updateActiveStep(e) {
+      const frameStep = e.detail.step;
+      const activeIdx = stepMapping[frameStep] ?? 0;
+      
+      if (activeIdx !== currentActiveIdx) {
+        currentActiveIdx = activeIdx;
+        
+        // Disable pointer events temporarily during fade out
+        descText.style.pointerEvents = 'none';
+        badgeText.style.pointerEvents = 'none';
+        
+        // Fade out
+        descText.classList.add('fade-out');
+        badgeText.classList.add('fade-out');
+        
+        // Change text and fade back in
+        setTimeout(() => {
+          descText.innerText = stepData[activeIdx].text;
+          badgeText.innerText = stepData[activeIdx].badge;
+          
+          descText.classList.remove('fade-out');
+          badgeText.classList.remove('fade-out');
+        }, 300); // Wait for CSS transition (0.3s)
+      }
+    }
+
+    // Subscribe to custom event from HowItWorksDemo component
+    document.addEventListener('demo-step-change', updateActiveStep);
+    
+    // Cleanup for Astro view transitions
+    document.addEventListener('astro:before-swap', () => {
+      document.removeEventListener('demo-step-change', updateActiveStep);
+    }, { once: true });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupStepSync);
+  document.addEventListener('astro:page-load', setupStepSync);
+</script>

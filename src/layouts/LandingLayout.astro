@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content="Tìm staycation tự check-in gần bạn, khám phá hàng trăm địa điểm độc đáo cho kỳ nghỉ ngắn ngày. Trải nghiệm an toàn với host đã được xác minh trên Findcation." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://app.findcation.vn/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="Tìm staycation tự check-in gần bạn, khám phá hàng trăm địa điểm độc đáo cho kỳ nghỉ ngắn ngày." />
+    <meta property="og:image" content="https://app.findcation.vn/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://app.findcation.vn/" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content="Tìm staycation tự check-in gần bạn với Findcation." />
+    <meta property="twitter:image" content="https://app.findcation.vn/og-image.jpg" />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+
+    <script>
+      // Intersection Observer for Scroll Animations
+      document.addEventListener("DOMContentLoaded", () => {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target); // Run once per element
+            }
+          });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        revealElements.forEach(el => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>

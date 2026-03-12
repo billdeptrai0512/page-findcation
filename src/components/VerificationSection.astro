@@ -1,0 +1,428 @@
+---
+// VerificationSection.astro
+---
+
+<section id="verification-section" class="verification-section">
+  <div class="container">
+    <div class="header-content">
+      <h2 class="section-title">Lời mời hợp tác</h2>
+      <p class="section-subtitle">Findcation không thu phí đặt phòng</p>
+    </div>
+
+    <div class="cards-container">
+
+      <!-- Host CTA -->
+      <div class="host-cta">
+        <h3 class="cta-title">Findcation <span class="text-underline">hông thu phí</span> đặt phòng</h3>
+        
+        <div class="cta-features">
+          <div class="feature-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <p>Bọn mình sẽ gửi code để xác minh mạng xã hội của bạn.</p>
+          </div>
+          <div class="feature-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <p>Sau đó đến địa chỉ đăng ký để trải nghiệm nhà thực tế.</p>
+          </div>
+          <div class="feature-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <p>Staycation hiển thị trên bản đồ và duy trì nền tảng.</p>
+          </div>
+        </div>
+
+        <div class="cta-action-row">
+          <div class="pricing-info">
+            <span class="pricing-amount">512.000đ<span class="pricing-period"> / tháng</span></span>
+          </div>
+          <a href="#" class="cta-button">Đồng ý hợp tác</a>
+        </div>
+      </div>
+      <!-- Trust Score Card -->
+      <div class="trust-score-card">
+        <div class="card-header">
+          <span class="trust-title">Điểm</span>
+          <div class="score-badge">Cao</div>
+        </div>
+        
+        <div class="score-display">
+          <span class="score-number" id="trust-score-value">0</span>
+          <span class="score-total">/ 100</span>
+        </div>
+
+        <ul class="verification-checklist">
+          {
+            [
+              "Xác minh kênh liên hệ booking",
+              "Sử dụng ảnh thật",
+              "Địa chỉ đăng ký được xác thực",
+              "Duy trì hoạt động trên 3 tháng"
+            ].map((text, index) => (
+              <li class="check-item" style={`--item-index: ${index};`}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="check-icon">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span class="check-text">{text}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .verification-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1.25rem;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .header-content {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: #4b5563;
+    line-height: 1.6;
+  }
+
+  .cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Trust Score Card */
+  .trust-score-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 2.25rem;
+    box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .trust-score-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.12), 0 8px 16px -4px rgba(0, 0, 0, 0.04);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .trust-title {
+    font-weight: 600;
+    color: #4b5563;
+    font-size: 1.125rem;
+  }
+
+  .score-badge {
+    background-color: #ecfdf5;
+    color: #059669;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+  }
+
+  .score-display {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .score-number {
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .score-total {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #9ca3af;
+  }
+
+  /* Checklist Styles */
+  .verification-checklist {
+    list-style: none;
+    padding: 1.75rem 0 0 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    border-top: 1px solid #f3f4f6;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .check-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+
+  .check-icon {
+    color: #10b981;
+    flex-shrink: 0;
+  }
+
+  .check-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  /* Underline emphasis utility */
+  .text-underline {
+    color: #111827;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+  }
+
+  /* Host CTA */
+  .host-cta {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2), 0 8px 10px -6px rgba(0,0,0,0.1);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-title {
+    font-size: 1.625rem;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 1.75rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .cta-features {
+    display: flex;
+    flex-direction: column;
+    
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .feature-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+  }
+
+  .feature-icon {
+    color: #db2777;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .feature-row p {
+    font-size: 1rem;
+    color: #4b5563;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Pricing + CTA Action Row */
+  .cta-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f3f4f6;
+    flex-wrap: wrap;
+  }
+
+  .pricing-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .pricing-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .pricing-amount {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .pricing-period {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #9ca3af;
+  }
+
+  .cta-button {
+    flex-shrink: 0;
+    display: inline-block;
+    padding: 0.875rem 1.75rem;
+    background: linear-gradient(135deg, #ff4081 0%, #ff0f5e 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 9999px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 14px 0 rgba(255, 15, 94, 0.25);
+    white-space: nowrap;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 15, 94, 0.4);
+  }
+
+  /* Animations triggered by intersection observer */
+  .is-visible .check-item {
+    animation: fadeSlideRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--item-index) * 0.4s);
+  }
+
+  .is-visible .checkmark__circle {
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    animation-delay: calc(var(--item-index) * 0.4s + 0.3s);
+  }
+  
+  .is-visible .checkmark__check {
+    animation: stroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    animation-delay: calc(var(--item-index) * 0.4s + 0.6s);
+  }
+
+  /* Keyframes */
+  @keyframes fadeSlideRight {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes stroke {
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>
+
+<script>
+  function setupVerificationAnimation() {
+    const section = document.getElementById('verification-section');
+    const scoreElement = document.getElementById('trust-score-value');
+    if (!section || !scoreElement) return;
+
+    // Reset state initially if re-running
+    scoreElement.textContent = "0";
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Trigger CSS animations
+          section.classList.add('is-visible');
+          
+          // Animate trust score
+          let currentScore = 0;
+          const targetScore = 85;
+          const duration = 2200; // sync with checklist CSS animation duration
+          const frameDuration = 1000 / 60; // assume 60fps
+          const totalFrames = Math.round(duration / frameDuration);
+          let frame = 0;
+
+          const animateScore = () => {
+             frame++;
+             const progress = frame / totalFrames;
+             const easeOut = 1 - Math.pow(1 - progress, 3);
+             
+             currentScore = Math.round(easeOut * targetScore);
+             scoreElement.textContent = currentScore;
+             
+             if (frame < totalFrames) {
+               requestAnimationFrame(animateScore);
+             } else {
+               scoreElement.textContent = targetScore;
+             }
+          };
+
+          // Give a small delay so checkmarks start rendering before score shoots up
+          setTimeout(() => {
+             requestAnimationFrame(animateScore);
+          }, 400);
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    observer.observe(section);
+  }
+
+  // Handle standard DOM load and Astro's ViewTransitions if used
+  document.addEventListener('astro:page-load', setupVerificationAnimation);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupVerificationAnimation);
+  } else {
+    setupVerificationAnimation();
+  }
+</script>

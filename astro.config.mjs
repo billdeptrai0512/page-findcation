@@ -1,0 +1,15 @@
+// @ts-check
+import { defineConfig } from 'astro/config';
+
+import react from '@astrojs/react';
+
+// https://astro.build/config
+export default defineConfig({
+    base: '/page-findcation',
+    integrations: [react()],
+    vite: {
+        server: {
+            allowedHosts: ['noon-thing-velvet-with.trycloudflare.com']
+        }
+    }
+});
