@@ -50,6 +50,43 @@ export default function HeroMap() {
 
         let currentRoots = [];
         let currentIsMobile = null;
+        let staycationMarker = null;
+        let isAnimating = true;
+
+        const runAnimation = async () => {
+            while (isAnimating) {
+                if (!userMarker || !staycationMarker || !map.hasLayer(userMarker) || !map.hasLayer(staycationMarker)) {
+                    await new Promise(r => setTimeout(r, 500));
+                    continue;
+                }
+
+                userMarker.openPopup();
+                staycationMarker.closePopup();
+
+                await new Promise(r => setTimeout(r, 2000));
+                if (!isAnimating) break;
+
+                userMarker.closePopup();
+
+                await new Promise(r => setTimeout(r, 500));
+                if (!isAnimating) break;
+
+                if (staycationMarker && map.hasLayer(staycationMarker)) {
+                    staycationMarker.openPopup();
+                }
+
+                await new Promise(r => setTimeout(r, 2000));
+                if (!isAnimating) break;
+
+                if (staycationMarker && map.hasLayer(staycationMarker)) {
+                    staycationMarker.closePopup();
+                }
+
+                await new Promise(r => setTimeout(r, 500));
+            }
+        };
+
+        runAnimation();
 
         const handleResize = () => {
             const isMobile = window.innerWidth < 768;
@@ -74,6 +111,7 @@ export default function HeroMap() {
 
                 map.setView(mapCenter, targetZoom);
 
+                staycationMarker = null;
                 // Clear existing staycation markers & react roots
                 markersRef.current.forEach(m => m.remove());
                 markersRef.current = [];
@@ -93,28 +131,23 @@ export default function HeroMap() {
                             closeOnClick: false,
                             autoPan: false,
                             offset: [0, 7]
-                        }).openPopup();
+                        });
                     }
 
                     // Add the single staycation marker
                     const marker = L.marker(homeCoords, { icon: homeIcon }).addTo(map);
                     markersRef.current.push(marker);
 
-                    const cardContent = document.createElement('div');
-                    const cardRoot = createRoot(cardContent);
-                    currentRoots.push(cardRoot);
-
-                    cardRoot.render(<StaycationPreviewCard />);
-
-                    marker.bindPopup(cardContent, {
+                    marker.bindPopup(` <div class="user-popup-content">Staycation ở đây!</div>`, {
                         className: 'panel',
                         closeButton: false,
                         autoClose: false,
                         closeOnClick: false,
                         autoPan: false,
-                        minWidth: 200,
                         offset: [-2, -45],
-                    })
+                    });
+
+                    staycationMarker = marker;
 
                 }, 0);
             }
@@ -128,6 +161,7 @@ export default function HeroMap() {
         window.addEventListener('resize', handleResize);
 
         return () => {
+            isAnimating = false;
             window.removeEventListener('resize', handleResize);
             markersRef.current.forEach(m => m.remove());
             currentRoots.forEach(r => r.unmount());
