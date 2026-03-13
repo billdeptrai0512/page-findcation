@@ -8,7 +8,7 @@ export default defineConfig({
     integrations: [react()],
     vite: {
         server: {
-            allowedHosts: ['noon-thing-velvet-with.trycloudflare.com']
+            allowedHosts: ['lived-stick-myself-rom.trycloudflare.com']
         }
     }
 });

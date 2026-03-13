@@ -1,5 +1,6 @@
 ---
 // Lightweight CSS-only (mostly) animation demo of Findcation app flow
+import { ShieldCheck } from "lucide-react";
 ---
 
 <div class="demo-container">
@@ -16,10 +17,7 @@
       </div>
       
       <!-- Map UI -->
-      <button class="nearby-btn">
-        <!--<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>-->
-        Gần tôi
-      </button>
+      <button class="nearby-btn">Gần tôi</button>
       
       <!-- User Location -->
       <div class="user-marker">
@@ -38,7 +36,7 @@
         <img src="/home.webp" alt="Staycation" />
       </div>
       
-      <!-- Group 2 Markers (Zoom Out) -->
+      <!-- Group 2 Markers -->
       <div class="stay-marker sm-4 group-2">
         <img src="/home.webp" alt="Staycation" />
       </div>
@@ -51,45 +49,167 @@
       <div class="stay-marker sm-7 group-2">
         <img src="/home.webp" alt="Staycation" />
       </div>
-      
-      <!-- Tap Pointer Interaction -->
-      <div class="pointer-cursor"></div>
-      
-      <!-- Staycation Listing Panel -->
+
+      <!-- ===================== FULL-SCREEN LISTING PANEL ===================== -->
       <div class="listing-panel">
-        <div class="panel-handle"></div>
-        <div class="panel-image">
-          <div class="panel-badge"><span class="badge-score">85</span><span class="badge-total">/100</span></div>
+        
+        <!-- Sticky Header -->
+        <div class="card-header">
+          <button class="back-btn">←</button>
+          <img src="/logo.webp" alt="Findcation" class="brand-logo-img" />
         </div>
-        <div class="panel-info">
-          <div class="panel-title-row">
-            <h4 class="property-title">Staycation</h4>
-            <div class="property-rating">
+
+        <!-- Scrollable Panel Content -->
+        <div class="panel-scroll-area">
+
+          <!-- Image Slider -->
+          <div class="img-slider-wrap">
+            <div class="img-slider">
+              <div class="img-slide">
+                <img src="https://picsum.photos/400/250?random=10" alt="Room 1" />
+              </div>
+              <div class="img-slide">
+                <img src="https://picsum.photos/400/250?random=11" alt="Room 2" />
+              </div>
+              <div class="img-slide">
+                <img src="https://picsum.photos/400/250?random=12" alt="Room 3" />
+              </div>
+            </div>
+            <div class="slider-dots">
+              <span class="dot active"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
             </div>
           </div>
-          <p class="property-price">800.000đ <span>/ 2 đêm</span></p>
-          <p class="property-location">Quận 8, Phường Chánh Hưng</p>
-          <div class="property-amenities">
-            <span class="amenity-tag">Netflix</span>
-            <span class="amenity-tag">Bồn tắm</span>
-            <span class="amenity-tag">Ban công</span>
-          </div>
-          <button class="cta-button">Liên hệ đặt phòng</button>
+
+
+          <!-- Detail Cards -->
+          <div class="detail-cards">
+
+            <div class="detail-card">
+              <div class="card-row-header">
+                <span class="card-icon">✦</span>
+                <span class="card-label">Tiêu đề</span>
+              </div>
+              <p class="card-content">Villa Quận 1</p>
+            </div>
+
+            <div class="detail-card">
+              <div class="card-row-header">
+                <span class="card-icon">🏠</span>
+                <span class="card-label">Cho thuê</span>
+              </div>
+              <p class="card-content">Toàn bộ căn nhà</p>
+            </div>
+
+            <div class="detail-card">
+              <div class="card-row-header">
+                <span class="card-icon">💰</span>
+                <span class="card-label">Chi phí</span>
+              </div>
+              <p class="card-content price-highlight">300.000đ <span class="price-arrow">→</span> 750.000đ</p>
+            </div>
+
+            <div class="detail-card">
+              <div class="card-row-header">
+                <span class="card-icon">📍</span>
+                <span class="card-label">Địa chỉ</span>
+              </div>
+              <p class="card-content">12 Nguyễn Huệ - Phường Bến Nghé - TP. Hồ Chí Minh</p>
+            </div>
+
+            <!-- Features card (collapsible) -->
+            <div class="detail-card features-card">
+              <div class="card-row-header features-toggle">
+                <span class="card-icon">✦</span>
+                <span class="card-label">Tiện nghi</span>
+                <span class="features-count">6</span>
+                <span class="chevron">˅</span>
+              </div>
+              <div class="features-list collapsed">
+                <div class="feature-row"><span>📶 Wifi</span></div>
+                <div class="feature-row"><span>❄️ Điều hòa</span></div>
+                <div class="feature-row"><span>🅿️ Bãi đỗ xe</span></div>
+                <div class="feature-row"><span>🫧 Máy giặt</span></div>
+                <div class="feature-row"><span>🍳 Bếp</span></div>
+                <div class="feature-row last"><span>🌿 Ban công</span></div>
+              </div>
+            </div>
+            
+            <div class="contact-panel">
+            <div class="contact-header">Thông tin liên hệ</div>
+            <div class="contact-body">
+              <div class="contact-icons">
+                <div class="contact-icon-wrap">
+                  <div class="ci-icon-box">
+                    <img src="/facebook.webp" alt="Facebook" class="ci-img" />
+                    <span class="shield-badge verified">
+                      <ShieldCheck size={14} strokeWidth={2.5} />
+                    </span>
+                  </div>
+                  <span class="ci-label">Facebook</span>
+                </div>
+                <div class="contact-icon-wrap">
+                  <div class="ci-icon-box">
+                    <img src="/instagram.webp" alt="Instagram" class="ci-img" />
+                    <span class="shield-badge verified">
+                      <ShieldCheck size={14} strokeWidth={2.5} />
+                    </span>
+                  </div>
+                  <span class="ci-label">Instagram</span>
+                </div>
+                <div class="contact-icon-wrap">
+                  <div class="ci-icon-box">
+                    <img src="/zalo.webp" alt="Zalo" class="ci-img" />
+                    <span class="shield-badge verified">
+                      <ShieldCheck size={14} strokeWidth={2.5} />
+                    </span>
+                  </div>
+                  <span class="ci-label">Zalo</span>
+                </div>
+              </div>
+            </div>
+            
         </div>
+
+          </div><!-- /detail-cards -->
+
+          <!-- Spacer so footer doesn't overlap content -->
+          <div style="height: 80px;"></div>
+        </div><!-- /panel-scroll-area -->
+
+      </div><!-- /listing-panel -->
+
+      <!-- App Logo Screen (Overlay) -->
+      <div class="app-logo-screen">
+        <img src="/logo.webp" alt="Findcation Logo" class="app-logo" />
       </div>
+
+      <!-- Tap Pointer Interaction -->
+      <div class="pointer-cursor"></div>
       
     </div>
   </div>
 </div>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  :root {
+    --primary: #E61E4D;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --shadow-sm: 0 2px 6px rgba(0,0,0,0.07);
+    --shadow-md: 0 4px 14px rgba(0,0,0,0.11);
+  }
+
   .demo-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    perspective: 1000px;
     width: 100%;
+    font-family: 'Inter', sans-serif;
   }
 
   .phone-frame {
@@ -104,10 +224,6 @@
     position: relative;
     overflow: hidden;
   }
-  
-  .demo-container:hover .phone-frame {
-    transform: rotateX(0deg) rotateY(0deg);
-  }
 
   .phone-notch {
     position: absolute;
@@ -119,7 +235,7 @@
     background: #111827;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
-    z-index: 100;
+    z-index: 200;
   }
 
   .phone-screen {
@@ -130,7 +246,26 @@
     overflow: hidden;
   }
 
-  /* Map Background */
+  /* ---- App Logo Screen ---- */
+  .app-logo-screen {
+    position: absolute;
+    inset: 0;
+    background: white;
+    z-index: 90;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .app-logo {
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* ---- Map Background ---- */
   .map-layer {
     position: absolute;
     inset: -200px;
@@ -143,7 +278,6 @@
     transform-origin: center;
     transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-
   .terrain-park {
     position: absolute;
     background: #dcfce7;
@@ -153,7 +287,6 @@
   }
   .p1 { width: 300px; height: 250px; top: 20%; left: 10%; }
   .p2 { width: 150px; height: 200px; bottom: 10%; right: 20%; background: #fef08a; }
-
   .terrain-water {
     position: absolute;
     background: #e0f2fe;
@@ -164,7 +297,7 @@
   .w1 { width: 400px; height: 200px; top: -50px; right: -100px; }
   .w2 { width: 250px; height: 300px; bottom: -100px; left: -50px; }
 
-  /* UI Elements */
+  /* ---- Nearby Button ---- */
   .nearby-btn {
     position: absolute;
     bottom: 32px;
@@ -173,22 +306,16 @@
     border: none;
     border-radius: 24px;
     padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
     font-size: 13px;
     font-weight: 600;
     color: #111827;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     z-index: 50;
     transition: transform 0.2s, background-color 0.2s, color 0.2s;
-  }
-  
-  .nearby-btn svg {
-    color: #E31C5F;
+    font-family: 'Inter', sans-serif;
   }
 
-  /* User Location Marker */
+  /* ---- User Marker ---- */
   .user-marker {
     position: absolute;
     top: 50%;
@@ -198,16 +325,14 @@
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     opacity: 0;
   }
-
   .user-core {
-    width: 32px;
-    height: 32px;
+    width: 48px;
+    height: 48px;
     position: relative;
     z-index: 2;
     object-fit: contain;
     filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
   }
-
   .user-pulse {
     position: absolute;
     top: 50%;
@@ -220,13 +345,12 @@
     animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
     z-index: 1;
   }
-
   @keyframes pulse {
     0% { transform: translate(-50%, -50%) scale(0.3); opacity: 1; }
     100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
   }
 
-  /* Staycation Markers */
+  /* ---- Staycation Markers ---- */
   .stay-marker {
     position: absolute;
     width: 44px;
@@ -239,7 +363,6 @@
     opacity: 0;
     transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s;
   }
-  
   .stay-marker img { 
     width: 100%; 
     height: 100%; 
@@ -247,275 +370,464 @@
     filter: drop-shadow(0 4px 12px rgba(227, 28, 95, 0.2));
   }
 
-  /* Positions */
   .sm-1 { top: 38%; left: 25%; transition-delay: 0.1s; }
   .sm-2 { top: 65%; left: 35%; transition-delay: 0.2s; }
-  .sm-3 { top: 40%; left: 75%; transition-delay: 0.0s; z-index: 35; } /* target marker */
-
+  .sm-3 { top: 40%; left: 75%; transition-delay: 0.0s; z-index: 35; }
   .sm-4 { top: 20%; left: 65%; transition-delay: 0.1s; }
   .sm-5 { top: 80%; left: 70%; transition-delay: 0.2s; }
   .sm-6 { top: 75%; left: 15%; transition-delay: 0.3s; }
   .sm-7 { top: 15%; left: 20%; transition-delay: 0.4s; }
 
-  /* Pointer Cursor */
+  /* ---- Pointer Cursor ---- */
   .pointer-cursor {
     position: absolute;
     width: 32px;
     height: 32px;
     background-image: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 24 24" fill="%23ffffff" xmlns="http://www.w3.org/2000/svg"><path d="M12,2A4,4 0 0 1 16,6V13L16.2,13.2C16.6,13.6 17.5,14 18,14C19.1,14 20,14.9 20,16C20,16.5 19.8,17 19.4,17.4L13.4,23.4C13,23.8 12.5,24 12,24H7C5.9,24 5,23.1 5,22V11L5.7,11C6.1,11 6.5,10.8 6.8,10.6L10,8V6A4,4 0 0 1 12,2Z" stroke="%23333333" stroke-width="1.5"/></svg>');
     background-repeat: no-repeat;
-    z-index: 100;
+    z-index: 999;
     pointer-events: none;
     top: 50%;
     left: 0%;
     opacity: 0;
     transform-origin: top left;
-    transition: top 0.6s ease-in-out, left 0.6s ease-in-out, transform 0.2s ease-out, opacity 0.3s ease, z-index 0s;
+    transform: translateZ(10px);
+    transition: top 0.6s ease-in-out, left 0.6s ease-in-out, transform 0.2s ease-out, opacity 0.3s ease;
   }
 
-  /* Listing Panel */
+  /* ====================== LISTING PANEL ====================== */
   .listing-panel {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: white;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    height: 100%;
+    background: #fafbfc;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
     z-index: 60;
     transform: translateY(110%);
-    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     display: flex;
     flex-direction: column;
-    padding-bottom: 20px; /* home indicator space */
-  }
-
-  .panel-handle {
-    width: 40px;
-    height: 4px;
-    background: #e5e7eb;
-    border-radius: 2px;
-    margin: 12px auto;
-  }
-
-  .panel-image {
-    height: 140px;
-    margin: 0 16px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #fce7f3 0%, #dbeafe 100%);
-    position: relative;
     overflow: hidden;
-  }
-  
-  .panel-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><path d="M10 90 L90 10 M30 90 L90 30 M10 70 L70 10" /></svg>');
-    background-size: cover;
-    opacity: 0.5;
+    font-family: 'Inter', sans-serif;
   }
 
-  .panel-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: white;
+  /* Sticky Header */
+  .card-header {
     display: flex;
-    align-items: baseline;
-    gap: 2px;
-    padding: 4px 8px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    z-index: 2;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 12px 10px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #f0f0f0;
+    flex-shrink: 0;
+    z-index: 10;
   }
-  .badge-score {
-    font-size: 13px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1;
-  }
-  .badge-total {
-    font-size: 9px;
+  .back-btn {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 5px 9px;
+    background: white;
+    font-size: 14px;
     font-weight: 600;
-    color: #9ca3af;
+    color: #333;
+    cursor: pointer;
+    line-height: 1;
+    font-family: 'Inter', sans-serif;
+  }
+  .brand-logo-img {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
   }
 
-  .panel-info {
-    padding: 16px;
+  /* Scrollable area - this is what the pointer "scrolls" */
+  .panel-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    transform: translateY(0);
+    transition: transform 0.8s ease;
+  }
+  .panel-scroll-area::-webkit-scrollbar { display: none; }
+
+  /* Image Slider */
+  .img-slider-wrap {
+    position: relative;
+    background: #1c1e21;
+  }
+  .img-slider {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .img-slider::-webkit-scrollbar { display: none; }
+  .img-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+  .img-slide img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+  .slider-dots {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4px;
+    background: rgba(0,0,0,0.35);
+    padding: 3px 7px;
+    border-radius: 10px;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #bbb;
+  }
+  .dot.active { background: #fff; }
+
+  /* Section padding */
+  .section-pad {
+    padding: 10px 12px 4px;
   }
 
-  .panel-title-row {
+  /* Verified Badge */
+  .verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border: 1px solid #81c784;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #2e7d32;
+    box-shadow: 0 2px 6px rgba(76,175,80,0.15);
+  }
+
+  /* Detail Cards */
+  .detail-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+  .detail-card {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s;
+  }
+  .card-row-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 5px;
+  }
+  .card-icon {
+    font-size: 12px;
+    color: #E61E4D;
+  }
+  .card-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #222;
+    flex: 1;
+  }
+  .card-content {
+    font-size: 0.82rem;
+    color: #555;
+    line-height: 1.5;
+    margin: 0;
+    padding-left: 18px;
+  }
+  .price-arrow { color: #999; margin: 0 2px; }
+  .price-highlight { color: #E61E4D; font-weight: 600; }
+
+  /* Features card */
+  .features-toggle {
+    cursor: pointer;
+  }
+  .features-count {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #E61E4D;
+    background: #fff1f4;
+    border-radius: 10px;
+    padding: 1px 6px;
+    margin-left: 2px;
+  }
+  .chevron {
+    font-size: 13px;
+    color: #999;
+    transition: transform 0.3s;
+  }
+  .features-list {
+    margin-top: 6px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .features-list.open {
+    max-height: 200px;
+  }
+  .features-list.collapsed {
+    max-height: 0;
+  }
+  .feature-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 4px;
+    padding: 7px 0;
+    border-bottom: 1px solid #f3f3f3;
+    font-size: 0.8rem;
+    color: #555;
+    padding-left: 18px;
+  }
+  .feature-row.last { border-bottom: none; }
+
+  /* ---- Panel Footer ---- */
+  .panel-footer {
+    flex-shrink: 0;
+    background: white;
+    border-top: 1px solid #f0f0f0;
+    padding: 10px 12px;
   }
 
-  .property-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #111827;
-    margin: 0;
-  }
-
-  .property-rating {
+  .footer-default {
     display: flex;
-    align-items: baseline;
-    gap: 2px;
+    flex-direction: column;
+    gap: 6px;
   }
-  .trust-score {
-    font-size: 15px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1;
-  }
-  .trust-total {
-    font-size: 11px;
-    font-weight: 600;
-    color: #9ca3af;
-  }
-
-  .property-price {
-    font-size: 18px;
-    font-weight: 700;
-    color: #E31C5F;
-    margin: 0 0 4px 0;
-  }
-  
-  .property-price span {
-    font-size: 13px;
-    font-weight: 500;
-    color: #6b7280;
-  }
-
-  .property-location {
-    font-size: 13px;
-    color: #6b7280;
-    margin: 0 0 12px 0;
-  }
-
-  .property-amenities {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-
-  .amenity-tag {
-    font-size: 11px;
-    font-weight: 500;
-    color: #4b5563;
-    background: #f3f4f6;
-    padding: 4px 8px;
-    border-radius: 100px;
-  }
-
-  .cta-button {
-    width: 100%;
-    background: #E31C5F;
+  .btn-primary {
+    background: linear-gradient(to right, #E61E4D, #E31C5F, #D70466);
     color: white;
-    font-size: 15px;
+    padding: 11px;
+    border-radius: var(--radius-md);
     font-weight: 600;
-    padding: 12px;
+    font-size: 13px;
     border: none;
-    border-radius: 12px;
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    width: 100%;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-secondary {
+    border: 1px solid #e0e0e0;
+    background: white;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 12px;
+    cursor: pointer;
+    width: 100%;
+    color: #555;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
   }
 
-  /* --- ANIMATION STATES CONTROLLED BY DATA-STEP --- */
+  /* Contact Panel (always visible by default) */
+  .contact-panel {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    box-shadow: var(--shadow-md);
+  }
+  .contact-header {
+    background: linear-gradient(135deg, #f0f7ff, #e8f4f8);
+    border-bottom: 1px solid #d0e8f2;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1976d2;
+    text-align: center;
+  }
+  .contact-body {
+    padding: 10px 8px 8px;
+  }
+  .contact-icons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  .contact-icon-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+  }
+  .ci-facebook, .ci-instagram, .ci-zalo {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 2px solid #f0f0f0;
+    transition: transform 0.2s;
+  }
+  .ci-facebook {
+    background: #1877F2;
+    color: white;
+    font-family: Georgia, serif;
+  }
+  .ci-instagram {
+    background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+    color: white;
+    font-size: 16px;
+  }
+  .ci-zalo {
+    background: #0068FF;
+    color: white;
+    font-weight: 900;
+    font-size: 16px;
+  }
+  .ci-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #444;
+  }
 
-  /* Step 1: Pointer moves to Nearby */
-  [data-step="1"] .pointer-cursor {
+  /* Icon box with webp image + shield badge */
+  .ci-icon-box {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ci-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .shield-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+  .shield-badge.verified {
+    color: #4caf50;
+  }
+
+  /* ====================== ANIMATION DATA-STEP STATES ====================== */
+
+  /* Step 0: Logo visible */
+  [data-step="0"] .app-logo-screen {
+    opacity: 1;
+    visibility: visible;
+  }
+  [data-step="0"] .pointer-cursor { opacity: 0; }
+  [data-step="1"] .pointer-cursor { opacity: 0; }
+
+  /* Step 2: Pointer moves to Gần tôi button */
+  [data-step="2"] .pointer-cursor {
     opacity: 1;
     top: calc(100% - 50px);
     left: 60px;
   }
 
-  /* Step 2: Click Nearby */
-  [data-step="2"] .pointer-cursor {
+  /* Step 3: Click Gần tôi button */
+  [data-step="3"] .pointer-cursor {
     opacity: 1;
     top: calc(100% - 50px);
     left: 60px;
     transform: scale(0.85);
   }
-  [data-step="2"] .nearby-btn {
+  [data-step="3"] .nearby-btn {
     transform: scale(0.92);
     background-color: #f3f4f6;
-    color: #3b82f6; /* turns blue when active */
-  }
-  [data-step="2"] .nearby-btn svg {
     color: #3b82f6;
   }
 
-  /* Step 3: Map shows User Location, pointer hides */
-  [data-step="3"] .user-marker, 
-  [data-step="4"] .user-marker, 
-  [data-step="5"] .user-marker, 
-  [data-step="6"] .user-marker, 
-  [data-step="7"] .user-marker, 
+  /* Step 4: User marker + group-1 pop */
+  [data-step="4"] .user-marker,
+  [data-step="5"] .user-marker,
+  [data-step="6"] .user-marker,
+  [data-step="7"] .user-marker,
   [data-step="8"] .user-marker,
   [data-step="9"] .user-marker,
-  [data-step="10"] .user-marker,
-  [data-step="11"] .user-marker {
+  [data-step="10"] .user-marker {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
-  [data-step="3"] .pointer-cursor, [data-step="4"] .pointer-cursor, [data-step="5"] .pointer-cursor {
-    opacity: 0;
-    top: 75%; left: 90%;
-  }
-  [data-step="3"] .nearby-btn, [data-step="4"] .nearby-btn, [data-step="5"] .nearby-btn, 
-  [data-step="6"] .nearby-btn, [data-step="7"] .nearby-btn, [data-step="8"] .nearby-btn,
-  [data-step="9"] .nearby-btn, [data-step="10"] .nearby-btn, [data-step="11"] .nearby-btn {
-    background-color: #EFF6FF; /* active blue tint */
+  [data-step="4"] .pointer-cursor { opacity: 0; top: 75%; left: 90%; }
+  [data-step="4"] .nearby-btn,
+  [data-step="5"] .nearby-btn,
+  [data-step="6"] .nearby-btn,
+  [data-step="7"] .nearby-btn,
+  [data-step="8"] .nearby-btn,
+  [data-step="9"] .nearby-btn,
+  [data-step="10"] .nearby-btn {
+    background-color: #EFF6FF;
     color: #2563EB;
   }
-
-  /* Step 4: Group 1 Markers pop up */
   [data-step="4"] .group-1,
   [data-step="5"] .group-1,
   [data-step="6"] .group-1,
   [data-step="7"] .group-1,
   [data-step="8"] .group-1,
   [data-step="9"] .group-1,
-  [data-step="10"] .group-1,
-  [data-step="11"] .group-1 {
+  [data-step="10"] .group-1 {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
 
-  /* Step 5: Map zooms out slightly, Group 2 pops up */
+  /* Step 5: Zoom out + group-2 */
   [data-step="5"] .map-layer,
   [data-step="6"] .map-layer,
   [data-step="7"] .map-layer,
   [data-step="8"] .map-layer,
   [data-step="9"] .map-layer,
-  [data-step="10"] .map-layer,
-  [data-step="11"] .map-layer {
-    transform: scale(0.8);
-  }
+  [data-step="10"] .map-layer { transform: scale(0.8); }
   [data-step="5"] .group-2,
   [data-step="6"] .group-2,
   [data-step="7"] .group-2,
   [data-step="8"] .group-2,
   [data-step="9"] .group-2,
-  [data-step="10"] .group-2,
-  [data-step="11"] .group-2 {
+  [data-step="10"] .group-2 {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
+  [data-step="5"] .pointer-cursor { opacity: 0; top: 75%; left: 90%; }
 
   /* Step 6: Pointer moves to target marker */
   [data-step="6"] .pointer-cursor {
     opacity: 1;
     top: 42%;
-    left: 78%; /* coordinates of sm-3 + pointer offset */
+    left: 78%;
   }
 
   /* Step 7: Click target marker */
@@ -528,60 +840,51 @@
   [data-step="7"] .target-marker,
   [data-step="8"] .target-marker,
   [data-step="9"] .target-marker,
-  [data-step="10"] .target-marker,
-  [data-step="11"] .target-marker {
+  [data-step="10"] .target-marker {
     transform: translate(-50%, -50%) scale(1.15);
     z-index: 45;
   }
   [data-step="7"] .target-marker img,
   [data-step="8"] .target-marker img,
   [data-step="9"] .target-marker img,
-  [data-step="10"] .target-marker img,
-  [data-step="11"] .target-marker img {
+  [data-step="10"] .target-marker img {
     filter: drop-shadow(0 0 8px rgba(227, 28, 95, 0.6));
   }
 
-  /* Step 8: Panel slides up, pointer stays at marker */
-  [data-step="8"] .pointer-cursor {
-    opacity: 1;
-    top: 42%;
-    left: 78%;
-  }
+  /* Step 8: Panel slides up, pointer at bottom ready to scroll */
   [data-step="8"] .listing-panel,
   [data-step="9"] .listing-panel,
-  [data-step="10"] .listing-panel,
-  [data-step="11"] .listing-panel {
+  [data-step="10"] .listing-panel {
     transform: translateY(0);
   }
+  [data-step="8"] .pointer-cursor {
+    opacity: 1;
+    top: 80%;
+    left: 50%;
+    z-index: 150;
+  }
 
-  /* Step 9: Pointer moves down to Contact Button */
+  /* Step 9: Pointer swipes UP (scroll sim) — content scrolls, footer revealed */
   [data-step="9"] .pointer-cursor {
     opacity: 1;
-    top: calc(100% - 40px);
+    top: 30%;
     left: 50%;
-    z-index: 100;
+    z-index: 150;
   }
+  /* Step 9 scroll is handled via JS scrollTop, not CSS transform */
 
-  /* Step 10: Click Contact Button */
+  /* Step 10: Pointer moves to CTA button & clicks; contact panel appears */
   [data-step="10"] .pointer-cursor {
     opacity: 1;
-    top: calc(100% - 40px);
+    top: calc(100% - 68px);
     left: 50%;
     transform: scale(0.85);
-    z-index: 100;
+    z-index: 150;
   }
-  [data-step="10"] .cta-button {
-    transform: scale(0.96);
-    background-color: #be1850;
+  /* Step 10: Pointer clicks contact area */
+  [data-step="10"] .ci-icon-box {
+    transform: scale(0.94);
   }
-
-  /* Step 11: Wait reading time before loop, pointer fades out */
-  [data-step="11"] .pointer-cursor {
-    opacity: 0;
-    top: calc(100% - 40px);
-    left: 50%;
-  }
-
 </style>
 
 <script>
@@ -589,52 +892,98 @@
     const screen = document.getElementById('demo-screen');
     if (!screen) return;
     
-    // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (prefersReducedMotion.matches) {
-      // Setup default final state and don't loop
-      screen.setAttribute('data-step', '8');
+      screen.setAttribute('data-step', '10');
       return;
     }
 
+    // Timeline
     const timeline = [
-      { step: 0, delay: 1000 },  // Frame 1: Empty map
-      { step: 1, delay: 800 },   // Move pointer to nearby
-      { step: 2, delay: 300 },   // Click nearby
-      { step: 3, delay: 600 },   // Frame 2: User location appears
-      { step: 4, delay: 1200 },  // Frame 3: Group 1 markers pop up
-      { step: 5, delay: 1000 },  // Frame 4: Zoom out, Group 2 markers pop up
-      { step: 6, delay: 800 },   // Frame 5: Move pointer to marker
-      { step: 7, delay: 300 },   // Click marker
-      { step: 8, delay: 1000 },  // Frame 6: Panel appears up
-      { step: 9, delay: 800 },   // Move pointer to contact button
-      { step: 10, delay: 300 },  // Click contact button
-      { step: 11, delay: 2000 }  // Reading time, then reset
+      { step: 0, delay: 1400 },  // Logo screen
+      { step: 1, delay: 600 },   // Logo fades, map visible
+      { step: 2, delay: 800 },   // Pointer moves to Gần tôi
+      { step: 3, delay: 400 },   // Click Gần tôi
+      { step: 4, delay: 1000 },  // User marker + group-1 markers
+      { step: 5, delay: 900 },   // Zoom out + group-2
+      { step: 6, delay: 800 },   // Pointer moves to marker
+      { step: 7, delay: 400 },   // Click marker
+      { step: 8, delay: 1000 },  // Full panel slides up
+      { step: 9, delay: 1100 },  // Pointer swipes up (scroll)
+      { step: 10, delay: 2500 }  // Click CTA & pause
     ];
 
     let currentIndex = 0;
     let timeoutId;
 
+    // Custom scroll animation matching the pointer's CSS transition (0.6s ease-in-out)
+    function smoothScrollTo(el, targetTop, duration) {
+      const startTop = el.scrollTop;
+      const distance = targetTop - startTop;
+      const startTime = performance.now();
+      function easeInOut(t) {
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      }
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        el.scrollTop = startTop + distance * easeInOut(progress);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
     function runAnimation() {
-      if (!document.getElementById('demo-screen')) return; // Component unmounted
+      if (!document.getElementById('demo-screen')) return;
       
       const currentFrame = timeline[currentIndex];
-      screen.setAttribute('data-step', currentFrame.step.toString());
+      const stepNum = currentFrame.step;
+      screen.setAttribute('data-step', stepNum.toString());
       
-      // Dispatch event to sync with parent component
-      const event = new CustomEvent('demo-step-change', { 
-        detail: { step: currentFrame.step } 
-      });
-      document.dispatchEvent(event);
+      // Scroll panel content via scrollTop (avoids overflow clipping from CSS transform)
+      const scrollArea = screen.querySelector('.panel-scroll-area');
+      if (scrollArea) {
+        if (stepNum >= 9) {
+          smoothScrollTo(scrollArea, 160, 600); // 600ms  = pointer CSS transition duration
+        } else if (stepNum < 8) {
+          scrollArea.scrollTop = 0;
+        }
+      }
+      
+      document.dispatchEvent(new CustomEvent('demo-step-change', { 
+        detail: { step: stepNum } 
+      }));
+      
+      if (currentIndex === timeline.length - 1) {
+        setTimeout(() => {
+          if (document.getElementById('demo-screen')) {
+            screen.setAttribute('data-step', '0');
+            const sa = screen.querySelector('.panel-scroll-area');
+            if (sa) sa.scrollTop = 0;
+          }
+        }, currentFrame.delay - 400);
+      }
       
       currentIndex = (currentIndex + 1) % timeline.length;
       timeoutId = setTimeout(runAnimation, currentFrame.delay);
     }
 
-    // Start delay
-    timeoutId = setTimeout(runAnimation, 500);
+    // Features toggle
+    const featCard = screen.querySelector('.features-card');
+    if (featCard) {
+      featCard.querySelector('.features-toggle')?.addEventListener('click', () => {
+        const list = featCard.querySelector('.features-list');
+        const chevron = featCard.querySelector('.chevron');
+        if (list) {
+          list.classList.toggle('collapsed');
+          list.classList.toggle('open');
+          if (chevron) chevron.style.transform = list.classList.contains('open') ? 'rotate(180deg)' : '';
+        }
+      });
+    }
 
-    // Astro transition teardown cleanup
+    timeoutId = setTimeout(runAnimation, 700);
+
     document.addEventListener('astro:before-swap', () => {
       clearTimeout(timeoutId);
     }, { once: true });

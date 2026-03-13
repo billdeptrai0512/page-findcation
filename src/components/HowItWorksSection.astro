@@ -10,6 +10,9 @@ import HowItWorksDemo from './HowItWorksDemo.astro';
       <div class="step-indicator-wrapper">
         <span class="step-badge" id="step-badge">Bước 1</span>
       </div>
+      <div class="step-indicator-instruction">
+        <p class="section-subtitle" id="step-description">Mở ứng dụng.</p>
+      </div>
     </div>
     
     <div class="how-it-works-content">
@@ -18,17 +21,21 @@ import HowItWorksDemo from './HowItWorksDemo.astro';
         <HowItWorksDemo />
       </div>
     </div>
-    <div class="step-indicator-instruction">
-      <p class="section-subtitle" id="step-description">Mở ứng dụng và xác định vị trí hiện tại của bạn trên bản đồ.</p>
-    </div>
+
+    
   </div>
 </section>
 
 <style>
   .how-it-works {
-    padding: 2rem;
+    padding: 6rem 1.25rem;
     background-color: #ffffff;
     overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .container {
@@ -56,6 +63,7 @@ import HowItWorksDemo from './HowItWorksDemo.astro';
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 1rem;
     min-height: 1rem;
   }
 
@@ -63,7 +71,7 @@ import HowItWorksDemo from './HowItWorksDemo.astro';
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     min-height: 1rem;
   }
 
@@ -114,19 +122,25 @@ import HowItWorksDemo from './HowItWorksDemo.astro';
     if (!descText || !badgeText) return;
 
     // Define which animation frames correspond to which UI steps (0-indexed)
-    // Frame 0-3: Step 1 (Open Map)
-    // Frame 4-7: Step 2 (Tap & View Details)
-    // Frame 8-11: Step 3 (Contact & Enjoy)
+    // Frame 0-1: Step 1 (Mở ứng dụng - logo auto fade)
+    // Frame 2-5: Step 2 (Cho phép vị trí - nearby button click)
+    // Frame 6-7: Step 3 (Nhấn điểm đỏ)
+    // Frame 8-9: Step 4 (Xem bảng thông tin & scroll)
+    // Frame 10:  Step 5 (Liên hệ đặt phòng)
     const stepMapping = {
-      0: 0, 1: 0, 2: 0, 3: 0,
-      4: 1, 5: 1, 6: 1, 7: 1,
-      8: 2, 9: 2, 10: 2, 11: 2
+      0: 0, 1: 0,
+      2: 1, 3: 1, 4: 1, 5: 1,
+      6: 2, 7: 2,
+      8: 3, 9: 3,
+      10: 4
     };
 
     const stepData = [
-      { badge: "Bước 1", text: "Mở ứng dụng và xác định vị trí hiện tại của bạn trên bản đồ." },
-      { badge: "Bước 2", text: "Nhấn vào các biểu tượng trên bản đồ để xem nhanh thông tin." },
-      { badge: "Bước 3", text: "Liên hệ đặt phòng trực tiếp với chủ nhà." }
+      { badge: "Bước 1", text: "Mở ứng dụng." },
+      { badge: "Bước 2", text: "Cho phép truy cập vị trí." },
+      { badge: "Bước 3", text: "Nhấn vào các điểm đánh dấu đỏ." },
+      { badge: "Bước 4", text: "Xem bảng thông tin." },
+      { badge: "Bước 5", text: "Liên hệ đặt phòng." }
     ];
 
     let currentActiveIdx = 0;
