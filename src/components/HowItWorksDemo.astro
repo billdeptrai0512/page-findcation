@@ -1,6 +1,33 @@
 ---
 // Lightweight CSS-only (mostly) animation demo of Findcation app flow
 import { ShieldCheck } from "lucide-react";
+import fs from "node:fs";
+import path from "node:path";
+
+let selectedImages = [];
+try {
+  const staycationDir = path.join(process.cwd(), "public", "staycation");
+  const files = fs.readdirSync(staycationDir).filter(file => file.match(/\.(jpg|jpeg|png|webp|avif)$/i));
+  // Shuffle array
+  files.sort(() => Math.random() - 0.5);
+  selectedImages = files.slice(0, 9).map(f => `/staycation/${f}`);
+} catch (e) {
+  console.error("Error reading staycation directory:", e);
+  selectedImages = [
+    "/staycation/12.jpg", 
+    "/staycation/476583676_1677470439646021_1849087174596840875_n.jpg", 
+    "/staycation/481454916_122100282974782033_72008881661737480_n.jpg"
+  ];
+}
+
+// Fallback if directory is empty
+if (selectedImages.length === 0) {
+  selectedImages = [
+    "https://picsum.photos/400/250?random=10",
+    "https://picsum.photos/400/250?random=11",
+    "https://picsum.photos/400/250?random=12"
+  ];
+}
 ---
 
 <div class="demo-container">
@@ -65,20 +92,16 @@ import { ShieldCheck } from "lucide-react";
           <!-- Image Slider -->
           <div class="img-slider-wrap">
             <div class="img-slider">
-              <div class="img-slide">
-                <img src="https://picsum.photos/400/250?random=10" alt="Room 1" />
-              </div>
-              <div class="img-slide">
-                <img src="https://picsum.photos/400/250?random=11" alt="Room 2" />
-              </div>
-              <div class="img-slide">
-                <img src="https://picsum.photos/400/250?random=12" alt="Room 3" />
-              </div>
+              {selectedImages.map((imgSrc, index) => (
+                <div class="img-slide">
+                  <img src={imgSrc} alt={`Room ${index + 1}`} />
+                </div>
+              ))}
             </div>
             <div class="slider-dots">
-              <span class="dot active"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
+              {selectedImages.map((_, index) => (
+                <span class={`dot ${index === 0 ? 'active' : ''}`}></span>
+              ))}
             </div>
           </div>
 
@@ -979,6 +1002,21 @@ import { ShieldCheck } from "lucide-react";
             screen.setAttribute('data-step', '0');
             const sa = screen.querySelector('.panel-scroll-area');
             if (sa) sa.scrollTop = 0;
+            
+            // Randomize images when motion restarts
+            const sliderImages = screen.querySelectorAll('.img-slide img');
+            if (sliderImages.length > 0) {
+              const srcs = Array.from(sliderImages).map(img => img.src);
+              // Shuffle array using Fisher-Yates approach
+              for (let i = srcs.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [srcs[i], srcs[j]] = [srcs[j], srcs[i]];
+              }
+              // Re-assign shufffled sources back
+              sliderImages.forEach((img, i) => {
+                img.src = srcs[i];
+              });
+            }
           }
         }, currentFrame.delay - 400);
       }
