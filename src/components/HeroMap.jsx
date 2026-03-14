@@ -63,7 +63,7 @@ export default function HeroMap() {
                 userMarker.openPopup();
                 staycationMarker.closePopup();
 
-                await new Promise(r => setTimeout(r, 2000));
+                await new Promise(r => setTimeout(r, 1500));
                 if (!isAnimating) break;
 
                 userMarker.closePopup();
@@ -75,7 +75,7 @@ export default function HeroMap() {
                     staycationMarker.openPopup();
                 }
 
-                await new Promise(r => setTimeout(r, 2000));
+                await new Promise(r => setTimeout(r, 1500));
                 if (!isAnimating) break;
 
                 if (staycationMarker && map.hasLayer(staycationMarker)) {
