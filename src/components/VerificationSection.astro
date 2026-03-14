@@ -6,16 +6,38 @@
   <div class="container">
     <div class="header-content">
       <h2 class="section-title">Lời mời hợp tác</h2>
-      <p class="section-subtitle">Findcation không thu phí đặt phòng</p>
+      <p class="section-subtitle">Đăng staycation của bạn lên bản đồ.</p>
     </div>
 
     <div class="cards-container">
 
+      <div class="host-cta">        
+        <div class="cta-features">
+          <div class="feature-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <p>Findcation không thu phí đặt phòng.</p>
+          </div>
+          <div class="feature-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <p>Khách nhắn tin trực tiếp cho bạn.</p>
+          </div>
+          <div class="feature-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <p>Bạn nhận 100% doanh thu.</p>
+          </div>
+          <div class="feature-row">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <p>Mở khóa điểm uy tín.</p>
+          </div>
+        </div>
+
+      </div>
+
       <!-- Trust Score Card -->
       <div class="trust-score-card">
         <div class="card-header">
-          <span class="trust-title">Điểm</span>
-          <div class="score-badge">Uy tín</div>
+          <span class="trust-title">Điểm uy tín</span>
+          <div id="trust-score-badge" class="score-badge badge-none">Chưa đánh giá</div>
         </div>
         
         <div class="score-display">
@@ -26,51 +48,40 @@
         <ul class="verification-checklist">
           {
             [
-              "Xác minh kênh liên hệ booking",
-              "Xác thực địa chỉ đăng ký",
-              "Sử dụng ảnh thật",
-              "Duy trì hoạt động trên 3 tháng",
-              "Duy trì hoạt động trên 6 tháng",
-              "Duy trì hoạt động trên 12 tháng"
-            ].map((text, index) => (
-              <li class="check-item" style={`--item-index: ${index};`}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="check-icon">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                <span class="check-text">{text}</span>
+              { text: "Xác minh kênh liên hệ", points: 15 },
+              { text: "Xác thực địa chỉ", points: 15 },
+              { text: "Sử dụng ảnh thật", points: 20 },
+              { text: "Hoạt động trên 3 tháng", points: 10 },
+              { text: "Hoạt động trên 6 tháng", points: 15 },
+              { text: "Hoạt động trên 12 tháng", points: 25 }
+            ].map((item, index) => (
+              <li class="check-item-container" style={`--item-index: ${index};`}>
+                <label class="check-item-label">
+                  <input type="checkbox" class="trust-checkbox" data-points={item.points} />
+                  <div class="checkbox-custom">
+                    <svg class="check-svg" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                  <span class="check-text">{item.text}</span>
+                </label>
               </li>
             ))
           }
         </ul>
-      </div>
-
-      <!-- Host CTA -->
-      <div class="host-cta">
-        <h3 class="cta-title">Đồng hành - Phát triển</h3>
-        
-        <div class="cta-features">
-          <div class="feature-row">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            <p>Bảo trì hệ thống - database - tên miền.</p>
-          </div>
-          <div class="feature-row">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            <p>Hiển thị staycation trên bản đồ.</p>
-          </div>
-          <div class="feature-row">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feature-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            <p>Tăng điểm uy tín theo thời gian.</p>
-          </div>
-        </div>
 
         <div class="cta-action-row">
           <div class="pricing-info">
+            <span class="pricing-label">Phí duy trì hiển thị</span>
             <span class="pricing-amount">512.000đ<span class="pricing-period"> / tháng</span></span>
+            <span class="pricing-cancel">Có thể hủy bất cứ lúc nào.</span>
           </div>
-          <a href="https://app.findcation.vn/auth/login" class="cta-button">Đồng ý hợp tác</a>
+          <a href="https://app.findcation.vn/auth/login" class="cta-button">Tham gia Findcation</a>
         </div>
       </div>
+
+      <!-- Host CTA -->
+     
       
     </div>
   </div>
@@ -96,7 +107,7 @@
 
   .header-content {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .section-title {
@@ -149,19 +160,38 @@
   }
 
   .score-badge {
-    background-color: #ecfdf5;
-    color: #059669;
     font-size: 0.875rem;
     font-weight: 700;
     padding: 0.4rem 1rem;
     border-radius: 9999px;
+    transition: all 0.3s ease;
+  }
+
+  .badge-none {
+    background-color: #f3f4f6;
+    color: #4b5563;
+  }
+
+  .badge-basic {
+    background-color: #dbeafe;
+    color: #2563eb;
+  }
+
+  .badge-good {
+    background-color: #ecfdf5;
+    color: #059669;
+  }
+
+  .badge-excellent {
+    background-color: #fef3c7;
+    color: #d97706;
   }
 
   .score-display {
     display: flex;
     align-items: baseline;
     gap: 0.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .score-number {
@@ -184,7 +214,7 @@
   /* Checklist Styles */
   .verification-checklist {
     list-style: none;
-    padding: 1.75rem 0 0 0;
+    padding: 1.75rem 0;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -192,29 +222,75 @@
     border-top: 1px solid #f3f4f6;
   }
 
-  .check-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  .check-item-container {
     opacity: 0;
     transform: translateX(-20px);
   }
 
-  .check-icon-wrapper {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
+  .check-item-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    user-select: none;
+    padding: 0.25rem 0;
   }
 
-  .check-icon {
-    color: #10b981;
+  .trust-checkbox {
+    display: none;
+  }
+
+  .checkbox-custom {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+    transition: all 0.2s ease;
+    background: #ffffff;
+  }
+
+  .check-svg {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s ease;
+    color: white;
+  }
+
+  .trust-checkbox:checked + .checkbox-custom {
+    background: #10b981;
+    border-color: #10b981;
+  }
+
+  .trust-checkbox:checked + .checkbox-custom .check-svg {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .check-item-label:hover .checkbox-custom {
+    border-color: #10b981;
   }
 
   .check-text {
     font-size: 1rem;
     font-weight: 600;
     color: #111827;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .points-bonus {
+    color: #10b981;
+    font-size: 0.875rem;
+    font-weight: 700;
+    background: #ecfdf5;
+    padding: 2px 8px;
+    border-radius: 12px;
   }
 
   /* Underline emphasis utility */
@@ -250,9 +326,7 @@
   .cta-features {
     display: flex;
     flex-direction: column;
-    
     gap: 1.25rem;
-    margin-bottom: 2rem;
   }
 
   .feature-row {
@@ -314,6 +388,12 @@
     color: #9ca3af;
   }
 
+  .pricing-cancel {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.125rem;
+  }
+
   .cta-button {
     flex-shrink: 0;
     display: inline-block;
@@ -335,19 +415,9 @@
   }
 
   /* Animations triggered by intersection observer */
-  .is-visible .check-item {
+  .is-visible .check-item-container {
     animation: fadeSlideRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: calc(var(--item-index) * 0.4s);
-  }
-
-  .is-visible .checkmark__circle {
-    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-    animation-delay: calc(var(--item-index) * 0.4s + 0.3s);
-  }
-  
-  .is-visible .checkmark__check {
-    animation: stroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-    animation-delay: calc(var(--item-index) * 0.4s + 0.6s);
+    animation-delay: calc(var(--item-index) * 0.15s);
   }
 
   /* Keyframes */
@@ -370,48 +440,72 @@
 </style>
 
 <script>
-  function setupVerificationAnimation() {
+  function setupVerificationCheckboxes() {
     const section = document.getElementById('verification-section');
     const scoreElement = document.getElementById('trust-score-value');
-    if (!section || !scoreElement) return;
+    const badgeElement = document.getElementById('trust-score-badge');
+    const checkboxes = document.querySelectorAll('.trust-checkbox');
+    if (!section || !scoreElement || !badgeElement || checkboxes.length === 0) return;
 
-    // Reset state initially if re-running
+    let currentScore = 0;
+    let targetScore = 0;
+    let animationFrameId = null;
+
+    const getBadgeInfo = (score) => {
+      if (score < 50) return { text: "Thấp", className: "badge-none" };
+      if (score < 75) return { text: "Cơ bản", className: "badge-basic" };
+      if (score < 90) return { text: "Cao", className: "badge-good" };
+      return { text: "Cao cấp", className: "badge-excellent" };
+    };
+
+    const updateBadge = (score) => {
+      const info = getBadgeInfo(score);
+      badgeElement.textContent = info.text;
+      badgeElement.className = `score-badge ${info.className}`;
+    };
+
+    // Reset ALL checkboxes on load so score is truly 0
+    checkboxes.forEach(cb => { cb.checked = false; });
     scoreElement.textContent = "0";
+    updateBadge(0);
+
+    const animateScore = () => {
+      if (currentScore === targetScore) return;
+      
+      const diff = Math.abs(targetScore - currentScore);
+      const increment = diff > 5 ? Math.ceil(diff / 5) : 1;
+      
+      if (targetScore > currentScore) {
+        currentScore = Math.min(targetScore, currentScore + increment);
+      } else {
+        currentScore = Math.max(targetScore, currentScore - increment);
+      }
+      
+      scoreElement.textContent = currentScore.toString();
+      updateBadge(currentScore);
+      
+      if (currentScore !== targetScore) {
+        animationFrameId = requestAnimationFrame(animateScore);
+      }
+    };
+
+    const updateScore = () => {
+      targetScore = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .reduce((sum, cb) => sum + parseInt(cb.dataset.points || '0', 10), 0);
+      
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(animateScore);
+    };
+
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', updateScore);
+    });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Trigger CSS animations
           section.classList.add('is-visible');
-          
-          // Animate trust score
-          let currentScore = 0;
-          const targetScore = 85;
-          const duration = 2200; // sync with checklist CSS animation duration
-          const frameDuration = 1000 / 60; // assume 60fps
-          const totalFrames = Math.round(duration / frameDuration);
-          let frame = 0;
-
-          const animateScore = () => {
-             frame++;
-             const progress = frame / totalFrames;
-             const easeOut = 1 - Math.pow(1 - progress, 3);
-             
-             currentScore = Math.round(easeOut * targetScore);
-             scoreElement.textContent = currentScore;
-             
-             if (frame < totalFrames) {
-               requestAnimationFrame(animateScore);
-             } else {
-               scoreElement.textContent = targetScore;
-             }
-          };
-
-          // Give a small delay so checkmarks start rendering before score shoots up
-          setTimeout(() => {
-             requestAnimationFrame(animateScore);
-          }, 400);
-
           observer.unobserve(entry.target);
         }
       });
@@ -421,10 +515,10 @@
   }
 
   // Handle standard DOM load and Astro's ViewTransitions if used
-  document.addEventListener('astro:page-load', setupVerificationAnimation);
+  document.addEventListener('astro:page-load', setupVerificationCheckboxes);
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupVerificationAnimation);
+    document.addEventListener('DOMContentLoaded', setupVerificationCheckboxes);
   } else {
-    setupVerificationAnimation();
+    setupVerificationCheckboxes();
   }
 </script>
