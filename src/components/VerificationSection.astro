@@ -48,9 +48,10 @@
         <ul class="verification-checklist">
           {
             [
-              { text: "Xác minh kênh liên hệ", points: 15 },
-              { text: "Xác thực địa chỉ", points: 25 },
+              { text: "Xác minh kênh liên hệ", points: 10 },
+              { text: "Xác thực địa chỉ", points: 20 },
               { text: "Sử dụng ảnh thật", points: 10 },
+              { text: "Hoạt động trên 1 tháng", points: 10 },
               { text: "Hoạt động trên 3 tháng", points: 15 },
               { text: "Hoạt động trên 6 tháng", points: 15 },
               { text: "Hoạt động trên 12 tháng", points: 20 }
@@ -199,11 +200,15 @@
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.04em;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #4b5563;
     font-variant-numeric: tabular-nums;
+    transition: color 0.3s ease;
   }
+
+  .score-number.score-none  { color: #4b5563; }
+  .score-number.score-basic { color: #2563eb; }
+  .score-number.score-good  { color: #059669; }
+  .score-number.score-excellent { color: #d97706; }
 
   .score-total {
     font-size: 1.5rem;
@@ -462,6 +467,9 @@
       const info = getBadgeInfo(score);
       badgeElement.textContent = info.text;
       badgeElement.className = `score-badge ${info.className}`;
+      // Sync score-number color with badge color
+      const colorClass = info.className.replace('badge-', 'score-');
+      scoreElement.className = `score-number ${colorClass}`;
     };
 
     // Reset ALL checkboxes on load so score is truly 0
