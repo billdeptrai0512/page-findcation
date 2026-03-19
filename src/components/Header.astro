@@ -5,7 +5,7 @@
 <header class="header">
   <div class="container">
     <a href="/" class="logo">Findcation</a>
-    <a href="https://app.findcation.vn" class="btn-primary">Open</a>
+    <a href="https://app.findcation.vn/auth/login" class="cta-button">Đăng nhập</a>
   </div>
 </header>
 
@@ -38,23 +38,23 @@
     letter-spacing: -0.02em;
   }
 
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.625rem 1.25rem;
-    background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 0.875rem;
+  .cta-button {
+    flex-shrink: 0;
+    display: inline-block;
+    padding: 0.875rem 1.25rem;
+    background: linear-gradient(135deg, #ff4081 0%, #ff0f5e 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
     text-decoration: none;
-    border-radius: 9999px; /* Pill-shaped */
-    box-shadow: 0 4px 14px 0 rgba(227, 28, 95, 0.2);
-    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 9999px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 14px 0 rgba(255, 15, 94, 0.25);
+    white-space: nowrap;
   }
 
-  .btn-primary:hover {
+  .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(227, 28, 95, 0.3);
+    box-shadow: 0 6px 20px rgba(255, 15, 94, 0.4);
   }
 </style>
